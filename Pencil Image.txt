@@ -1,0 +1,106 @@
+LGMVIP - Data Science Intern
+Task 3: Image to Pencil Sketch with Python
+Submitted by: VIDHI ANIL AGRAWAL\
+
+# - # import the library
+?
+# In[1]:
+?
+?
+import cv2
+import matplotlib.pyplot as plt
+?
+# - # get the image location and the image file name
+?
+# In[2]:
+?
+?
+img_location = 'C:/Users/lenovo/Desktop/pythonprojects/'
+?
+?
+# In[3]:
+?
+?
+filename = 'Flower.jpeg'
+?
+?
+# - # read in the image
+?
+# In[4]:
+?
+?
+img = cv2.imread(img_location+filename)
+?
+?
+# - # convert the image to gray scale
+?
+# In[5]:
+?
+?
+gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+?
+?
+# - # invert the image
+?
+# In[6]:
+?
+?
+inverted_gray_image = 255 - gray_image
+?
+?
+# - # blur the image by gaussian blur
+?
+# In[7]:
+?
+?
+blurred_image = cv2.GaussianBlur(inverted_gray_image, (21, 21), 0)
+?
+?
+# - # invert the blurred image
+?
+# In[8]:
+?
+?
+inverted_blurred_image = 255 - blurred_image
+?
+?
+# - # create the pencil sketch image
+?
+# In[9]:
+?
+?
+pencil_sketch_image = cv2.divide(gray_image, inverted_blurred_image, scale = 256.0)
+?
+?
+# - # show the image
+?
+# In[10]:
+?
+plt.figure(figsize=(14,8))
+plt.subplot(1,2,1)
+plt.title('Original image', size=18)
+plt.imshow(img)
+plt.axis('off')
+plt.subplot(1,2,2)
+plt.title('Sketch', size=18)
+rgb_sketch=cv2.cvtColor(pencil_sketch_image, cv2.COLOR_BGR2RGB)
+plt.imshow(rgb_sketch)
+plt.axis('off')
+plt.show()
+?
+?
+# cv2.imshow('Original Image', img)
+?
+?
+# # In[11]:
+?
+?
+# cv2.imshow('New Image', pencil_sketch_image)
+?
+?
+# # In[12]:
+?
+?
+# cv2.waitKey(0)
+
+?
